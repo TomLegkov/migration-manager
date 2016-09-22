@@ -76,8 +76,9 @@ class CleanMigrate extends Command
     }
 
     private function migrate(){
+        $this->info('Executing ' . $this->folder);
         Artisan::call('migrate', [
-            '--path'    => $this->getFullPath() 
+            '--path'    => 'database/migrations/' . $this->folder
         ]);
     }
 
@@ -100,6 +101,7 @@ class CleanMigrate extends Command
         $this->moveFiles();
         $this->migrate();
         $this->removeTraces();
+        $this->info('Migrated successfully!');
     }
 
     /**
