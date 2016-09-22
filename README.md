@@ -1,10 +1,8 @@
 # Migration Manager
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE.md)
+Fixes an annoying problem that Laravel doesn't fix - The ability to organize migrations into different folders.
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+Note: you can't have .php files in the root of the migration path. Everything has to be ordered in folders, otherwise Laravel's migrate:reset won't work.
 
 ## Install
 
@@ -16,27 +14,20 @@ $ composer require TomLegkov/migration-manager
 
 ## Usage
 
-``` php
-// todo
-```
-
-## Change log
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-## Testing
-
 ``` bash
-$ composer test
+# Create a new migration, just as you would normally
+$ php artisan make:model TestModel --migration
+
+# Now, move it to a folder with Migration Manager
+# It will automatically find the last created file
+$ php artisan migman:move folderName
+
+# Now you're ready to migrate
+$ php artisan migman
+
+# And now you can rollback aswell!
+$ php artisan migman:reset
 ```
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details.
-
-## Security
-
-If you discover any security related issues, please email tom.legkov@outlook.com instead of using the issue tracker.
 
 ## Credits
 
