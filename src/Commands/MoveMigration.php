@@ -54,6 +54,7 @@ class MoveMigration extends Command
         $moveTo = $newdir . DIRECTORY_SEPARATOR . basename($file);
         
         if (!file_exists($newdir)) {
+            $this->info("Creating folder...");
             mkdir($newdir, 0777, true);
         }   
 
