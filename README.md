@@ -12,6 +12,11 @@ Via Composer
 $ composer require TomLegkov/migration-manager
 ```
 
+And then run dump-autoload to configure the classes
+``` bash
+$ composer dump-autoload
+```
+
 ## Usage
 
 ``` bash
