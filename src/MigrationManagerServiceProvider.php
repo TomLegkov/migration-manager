@@ -10,6 +10,7 @@ class MigrationManagerServiceProvider extends ServiceProvider
     protected $commands = [
         "TomLegkov\MigrationManager\Commands\CleanMigrate",
         "TomLegkov\MigrationManager\Commands\MoveMigration",
+        "TomLegkov\MigrationManager\Commands\ResetMigration",
     ];
 
     /**

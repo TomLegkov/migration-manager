@@ -7,14 +7,14 @@ use Illuminate\Console\Command;
 use \RecursiveTreeIterator;
 use \RecursiveIteratorIterator;
 use \RecursiveDirectoryIterator;
-class CleanMigrate extends Command
+class ResetMigration extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'migman';
+    protected $signature = 'migman:reset';
 
     /**
      * The console command description.
@@ -24,8 +24,6 @@ class CleanMigrate extends Command
     protected $description = 'Migrates from the organized migrations';
 
     private $migrationPath;
-
-    private $folder;
 
     private $files = [];
 
@@ -38,21 +36,6 @@ class CleanMigrate extends Command
     {
         parent::__construct();
         $this->migrationPath = database_path() . DIRECTORY_SEPARATOR . 'migrations';
-    }
-
-    private function getFullPath(){
-        return $this->migrationPath . DIRECTORY_SEPARATOR . $this->folder;
-    }
-
-    /**
-     * Creates a unique folder and assigns it to {$this->folder}
-     */
-    private function createFolder() {
-        $this->folder = str_random(24);
-        while (file_exists($this->getFullPath())) {
-            $this->folder = str_random(24); 
-        }
-        mkdir($this->getFullPath());
     }
 
     private function findFiles(){
@@ -69,22 +52,18 @@ class CleanMigrate extends Command
     }
 
     private function moveFiles(){
-        $dest = $this->getFullPath() . DIRECTORY_SEPARATOR;
         foreach ($this->files as $file) {
-            copy($file->getRealPath(), $dest . $file->getFileName() );
+            copy($file->getRealPath(), $this->migrationPath . DIRECTORY_SEPARATOR . $file->getFileName() );
         }
     }
 
-    private function migrate(){
-        $this->info('Executing ' . $this->folder);
-        Artisan::call('migrate', [
-            '--path'    => 'database'. DIRECTORY_SEPARATOR .'migrations' . DIRECTORY_SEPARATOR . $this->folder
-        ]);
+    private function resetMigration(){
+        $this->info('Resetting Migration...');
+        Artisan::call('migrate:reset');
     }
 
     private function removeTraces(){
-        array_map('unlink', glob($this->getFullPath() . DIRECTORY_SEPARATOR . '*.*'));
-        rmdir($this->getFullPath());
+        array_map('unlink', glob($this->migrationPath . DIRECTORY_SEPARATOR . '*.php'));
     }
 
     /**
@@ -95,13 +74,12 @@ class CleanMigrate extends Command
     public function handle(){
         $this->findFiles();
         if (count($this->files) === 0) {
-            return $this->info('Nothing to migrate!');
+            return $this->info('Nothing to reset!');
         }
-        $this->createFolder();
         $this->moveFiles();
-        $this->migrate();
+        $this->resetMigration();
         $this->removeTraces();
-        $this->info('Migrated successfully!');
+        $this->info('Reset migration successfully!');
     }
 
     /**
