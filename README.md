@@ -9,7 +9,7 @@ Note: you can't have .php files in the root of the migration path. Everything ha
 Via Composer
 
 ``` bash
-$ composer require TomLegkov/migration-manager
+$ composer require tom-legkov/migration-manager
 ```
 
 And then run dump-autoload to configure the classes
