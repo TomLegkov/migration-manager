@@ -1,4 +1,4 @@
-# Migration Manager
+# Laravel Migration Manager
 
 Fixes an annoying problem that Laravel doesn't fix - The ability to organize migrations into different folders.
 

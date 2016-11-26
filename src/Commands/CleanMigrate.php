@@ -95,12 +95,16 @@ class CleanMigrate extends Command
     public function handle(){
         $this->findFiles();
         if (count($this->files) === 0) {
-            return $this->info('Nothing to migrate!');
+            return $this->error('Nothing to migrate!');
         }
         $this->createFolder();
         $this->moveFiles();
         $this->migrate();
-        $this->removeTraces();
+
+        while (file_exists($this->getFullPath())){
+            $this->removeTraces();
+        }
+
         $this->info('Migrated successfully!');
     }
 

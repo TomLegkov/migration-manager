@@ -72,9 +72,10 @@ class ResetMigration extends Command
      * @return mixed
      */
     public function handle(){
+        $this->info('Commencing reset...');
         $this->findFiles();
         if (count($this->files) === 0) {
-            return $this->info('Nothing to reset!');
+            return $this->error('Nothing to reset!');
         }
         $this->moveFiles();
         $this->resetMigration();

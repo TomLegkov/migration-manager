@@ -1,18 +1,18 @@
 {
-    "name": "TomLegkov/migration-manager",
+    "name": "tom-legkov/migration-manager",
     "type": "library",
-    "description": "Allows to separate Laravel's migration into separate folders",
+    "description": "Allows to separate Laravel's migration into folders",
     "keywords": [
-        "TomLegkov",
+        "Tom Legkov",
         "migration-manager"
     ],
-    "homepage": "https://github.com/TomLegkov/migration-manager",
+    "homepage": "https://github.com/tomlegkov/migration-manager",
     "license": "Apache License 2.0",
     "authors": [
         {
             "name": "Tom Legkov",
             "email": "tom.legkov@outlook.com",
-            "homepage": "https://github.com/TomLegkov",
+            "homepage": "https://github.com/tomlegkov",
             "role": "Developer"
         }
     ],
