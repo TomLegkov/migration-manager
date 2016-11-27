@@ -1,5 +1,5 @@
 {
-    "name": "tom-legkov/migration-manager",
+    "name": "tomlegkov/migration-manager",
     "type": "library",
     "description": "Allows to separate Laravel's migration into folders",
     "keywords": [
