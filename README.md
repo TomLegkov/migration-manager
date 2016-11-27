@@ -9,7 +9,7 @@ Note: you can't have .php files in the root of the migration path. Everything ha
 Via Composer
 
 ``` bash
-$ composer require tom-legkov/migration-manager
+$ composer require tomlegkov/migration-manager
 ```
 
 And then run dump-autoload to configure the classes
@@ -36,7 +36,7 @@ $ php artisan migman:reset
 
 ## Credits
 
-- Tom Legkov https://github.com/TomLegkov 
+- Tom Legkov https://github.com/tomlegkov 
 
 ## License
 
